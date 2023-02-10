@@ -53,6 +53,8 @@ namespace Ejercicio_numero_2
                     nota30 = Convert.ToDouble(Console.ReadLine());
 
                     notaDefinitiva = ((nota25 * 0.25) + (notanumero2_25 * 0.25) + (nota20 * 0.20) + (nota30 * 0.30));
+                    /*Aclaración: En la terminal se pueden ingresar numeros enteros y decimales.
+                     *los decimales no se establecen con una coma(,) Ejemplo: 3,3*/
                     estudiantes.Add(notaDefinitiva);
                     codigoEstudiante.Add(codigo);
 

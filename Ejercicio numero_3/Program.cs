@@ -1,89 +1,153 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Ejercicio_numero_3
 {
     internal class Program
     {
+        /*Se tiene la siguiente información por cada
+        uno de los N estudiantes de la universidad:
+        Edad
+        Sexo (1: masculino; 2: femenino)
+        Carrera (1: ingeniería; 2: otra carrera)
+        Hacer un algoritmo que obtenga:
+        ✓ Promedio de edad de los estudiantes de
+        Ingeniería.
+        ✓ Porcentaje de hombres en la universidad.
+        ✓ Porcentaje de mujeres que estudian
+        Ingeniería.*/
 
-        static void Main(string[] args)
+        static void Main()
         {
-            Double cantidadDeEstudiantes = 0;
-            int codigo = 0;
-            float nota25 = 0f;
-            float notanumero2_25 = 0f;
-            float nota30 = 0f;
-            float nota20 = 0f;
-            double notaDefinitiva = 0f;
-            Double promedio = 0f;
-            Double sumaDeNotas = 0f;
-            List<Double> estudiantes = new List<Double>();
-            List<int> codigoEstudiante = new List<int>();
-
-
-
-            Console.WriteLine("Ingrese cantidad de estudiantes: ");
-            cantidadDeEstudiantes = Convert.ToInt16(Console.ReadLine());
-
-            for (int estudiante = 0; estudiante < cantidadDeEstudiantes; estudiante++)
-            {
-                Console.WriteLine("Digite Codigo del estudiante: ");
-                codigo = Convert.ToInt16(Console.ReadLine());
-
-                Console.WriteLine("Digite Nota del 25%: ");
-                nota25 = Convert.ToInt16(Console.ReadLine());
-
-                Console.WriteLine("Digite Nota del segundo 25%: ");
-                notanumero2_25 = Convert.ToInt16(Console.ReadLine());
-
-                Console.WriteLine("Digite Nota del 20%: ");
-                nota20 = Convert.ToInt16(Console.ReadLine());
-
-                Console.WriteLine("Digite Nota del 30%: ");
-                nota30 = Convert.ToInt16(Console.ReadLine());
-
-                notaDefinitiva = Convert.ToDouble((nota25 * 0.25) + (notanumero2_25 * 0.25) + (nota20 * 0.20) + (nota30 * 0.30));
-                estudiantes.Add(notaDefinitiva);
-                codigoEstudiante.Add(codigo);
-
-
-            }
-
-            foreach (var i in estudiantes)
-            {
-                sumaDeNotas =+ i;
-            }
-            promedio = (sumaDeNotas / cantidadDeEstudiantes);
-
-                Double materiaPerdida = 0f;
-                Double porcentajeMateriaPerdida = 0f;
-
-                foreach(var i in estudiantes)
-                {
-                    if(i >= 3.0)
-                    {
-                        materiaPerdida += 1;
-                    }
-                }
-
-                porcentajeMateriaPerdida = (materiaPerdida * 100) / cantidadDeEstudiantes;
-
-            for(int i  = 0; i < cantidadDeEstudiantes; i++)
-            {
-                Console.WriteLine("El codigo del Estudiante: {0}, Su definita es: {1}", codigoEstudiante[i], estudiantes[i]);
-            }
-
-            Console.WriteLine("El promedio de notas definitas es: " + promedio);
-            Console.WriteLine("El porcentaje de de personas que perdieron el curso es de : " + porcentajeMateriaPerdida + "%");
-
-
+            InterfazPorConsola();
         }
 
-        
 
-        
-        
-        
-        
-    }
+        static void InterfazPorConsola()
+        {
+            Console.WriteLine("|| Bienvenido al sistema de integración de esudiantes de la universidad ||");
+            Console.WriteLine("");
+            int bandera = 1;
+            int edad;
+            int sexo;
+            int carrera;
+            List<int> edades = new List<int>();
+            List<int> sexoDeEstudiantes = new List<int>();
+            List<int> carreras = new List<int>();
+            double promedio;
+            double porcentajeDeHombres;
+            double porcentajeDeMujereIng;
+
+            while(bandera == 1)
+            {
+                Console.WriteLine("Desea Ingresar estudiante, Digite: (1) Si, (2) No");
+                bandera = Convert.ToInt32(Console.ReadLine());
+                if(bandera == 2)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Edad: ");
+                edad = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Sexo: (1): Masculino, (2): Femenino");
+                sexo = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Carrera: (1): Ingenieria, (2): Otra carrera");
+                carrera = Convert.ToInt32(Console.ReadLine());
+
+                edades.Add(edad);
+                sexoDeEstudiantes.Add(sexo);
+                carreras.Add(carrera);
+
+            }
+
+            promedio = PromedioDeEdades(edades);
+            porcentajeDeHombres = PorcentajeDeHombres(sexoDeEstudiantes);
+            porcentajeDeMujereIng = PorcentajeDeMujeresIng(sexoDeEstudiantes, carreras);
+
+            InterfazResultado(promedio, porcentajeDeHombres, porcentajeDeMujereIng);
+           
+        }
+
+        static void InterfazResultado(double promedio, double porcentajeDeHombres, double porcentajeDeMujeresIng)
+        {
+            Console.WriteLine("El promedio de las edades de los estudiantes es: {0}", promedio);
+            Console.WriteLine("");
+            Console.WriteLine("El porcentaje de hombres en la universidad es de: {0}", porcentajeDeHombres);
+            Console.WriteLine("");
+            Console.WriteLine("El porcentaje de mujeres en la facultad de Ingenierias es de: {0}", porcentajeDeMujeresIng);
+        }
+
+        static double PromedioDeEdades(List<int> edades)
+        {
+            int sumaDeEdades = 0;
+            int cantidadDeEstudiantes = 0;
+            double promedio;
+
+            foreach(var i in edades)
+            {
+                sumaDeEdades = sumaDeEdades + i;
+                cantidadDeEstudiantes++;
+            }
+
+            promedio = sumaDeEdades / cantidadDeEstudiantes;
+            return promedio;
+        }
+
+        static double PorcentajeDeHombres(List<int> sexoDeEstudiantes)
+        {
+
+            int cantidadDeHombres = 0;
+            int cantidadDeMujeres = 0;
+            int cantidadDeEstudiantes = 0;
+            double porcentajeDeHombres = 0;
+
+            foreach(var i in sexoDeEstudiantes)
+            {
+
+                cantidadDeEstudiantes++;
+
+                if(i == 1)
+                {
+                    cantidadDeHombres++;
+                }
+                else
+                {
+                    cantidadDeMujeres++;
+                }
+            }
+
+            porcentajeDeHombres = (cantidadDeHombres*100) / cantidadDeEstudiantes;
+            return porcentajeDeHombres;
+        }
+
+        static double PorcentajeDeMujeresIng(List<int> sexoDeEstudiantes, List<int> carreras)
+        {
+            double porcentajeDeMujeres = 0;
+            int cantidadDeMujeres = 0;
+            int cantidadDeMujeresIng = 0;
+
+            
+
+            foreach(var i in sexoDeEstudiantes)
+            {
+             
+                if(i == 2 && carreras[i] == 1)
+                {
+                    cantidadDeMujeresIng++;
+                }
+                
+                if(i == 2)
+                {
+                    cantidadDeMujeres++;
+                }
+
+            }
+            porcentajeDeMujeres = (cantidadDeMujeresIng * 100) / cantidadDeMujeres;
+
+            return porcentajeDeMujeres;
+        }
+    }  
 }
