@@ -62,6 +62,7 @@ namespace Ejercicio_numero_3
                 carreras.Add(carrera);
 
             }
+          
 
             promedio = PromedioDeEdades(edades);
             porcentajeDeHombres = PorcentajeDeHombres(sexoDeEstudiantes);
