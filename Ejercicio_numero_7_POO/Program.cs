@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Ejericicio_numero_7_POO
+namespace Ejercicio_numero_7_POO
 {
     internal class Program
     {
