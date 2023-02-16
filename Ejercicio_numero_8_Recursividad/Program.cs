@@ -12,8 +12,7 @@ namespace Ejercicio_numero_8_Recursividad
             crear de forma recursiva. Piensa cuál será el caso
             base (qué potencia se puede calcular de forma trivial)
             y cómo pasar del caso "n-1" al caso "n" (por ejemplo,
-            si sabes el valor de 54
-            , cómo hallarías el de 55 a partir
+            si sabes el valor de 54, cómo hallarías el de 55 a partir
             de él).*/
 
         static void Main()
@@ -29,7 +28,7 @@ namespace Ejercicio_numero_8_Recursividad
 
         static int Potencias(int numero1, int numero2)
         {
-            if(numero2 == 0)
+            if (numero2 == 0)
             {
                 return 1;
             }
@@ -39,6 +38,6 @@ namespace Ejercicio_numero_8_Recursividad
             }
         }
 
-        
+
     }
 }
