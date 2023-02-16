@@ -1,5 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
 
 Empleado empleado = new Empleado(045488961, 1000000, 30000, 10, 10, true, 2);
 empleado.Main();
