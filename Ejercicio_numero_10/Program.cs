@@ -52,6 +52,6 @@ public class Atleta
         Liga liga1 = new Liga("SuperLiga", 333,atleta1);
 
         Console.WriteLine("|| Bienvenido a software de ligas de futbol ||");
-        Console.WriteLine()
+        Console.WriteLine();
     }
 }
